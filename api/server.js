@@ -3,9 +3,10 @@
 /*global App*/
 /*global fetch*/
 
-React = window.React;
-ReactDOM = window.ReactDOM;
-ReactDOMServer = window.ReactDOMServer;
+// Exposing all the exported libraries in the global scope 
+Object.keys(window).map(function (key) {
+	return key + ' = window.' + key + ';';
+}).forEach(eval);
 
 var Page = (function () {
 	
