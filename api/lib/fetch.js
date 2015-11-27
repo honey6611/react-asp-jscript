@@ -8,10 +8,7 @@ function fetch(url, options) {
 	
 	var xhr = new ActiveXObject('MSXML2.ServerXMLHTTP');
 	xhr.open(method, url, false);
-	
 	xhr.send(data);
 	
-	return {
-		responseText: xhr.responseText
-	};
+	return xhr;
 }
