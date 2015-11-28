@@ -57,27 +57,39 @@ var Page = (function () {
 		var rootUrl = getRootUrl();
 		var apiUrl = rootUrl + 'api?sid=' + session;
 		var dataUrl = apiUrl + '&path=' + path;
-		var data = JSON.parse(fetch(dataUrl).responseText);
+		
+		var dataText = '';
+		fetch(dataUrl, { sync: true }).then(function (responseText) {
+			dataText = responseText;
+		});
+		
+		var pkg = {};
+		fetch(rootUrl + 'package.json', { sync: true })
+			.then(function (responseText) {
+				pkg = JSON.parse(responseText);
+			});
+				
 		return {
 			api: apiUrl,
-			data: data,
+			data: JSON.parse(dataText),
 			rootUrl: rootUrl,
-			session: session
+			session: session,
+			version: pkg.version
 		};
 	}());
 
 	return {
 		isStatic: false,
-		body: function renderBody() {
+		body: function () {
 			var el = React.createElement(App, __APP_STATE__);
 			return Page.isStatic
 				? ReactDOMServer.renderToStaticMarkup(el)
 				: ReactDOMServer.renderToString(el);
 		},
-		language: function renderLanguage() {
+		language: function () {
 			return 'en';
 		},
-		scripts: function renderScripts() {
+		scripts: function () {
 			if (Page.isStatic) {
 				return '';
 			}
@@ -93,12 +105,12 @@ var Page = (function () {
 				'</script>'
 			].join('');
 		},
-		header: function renderHeader() {
+		header: function () {
 			return [
 				//'<link rel="stylesheet" type="text/css" href="#">',
 			].join('');
 		},
-		title: function renderTitle() {
+		title: function () {
 			return 'Classic ASP React.js Playground';
 		}
 	};

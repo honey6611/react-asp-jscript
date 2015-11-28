@@ -1,0 +1,31 @@
+{
+  "name": "react-asp-jscript",
+  "version": "0.3.0",
+  "description": "A proof of concept for using React.js with the Classic ASP JScript engine",
+  "main": "default.asp",
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfeineis/react-asp-jscript.git"
+  },
+  "keywords": [
+    "react",
+    "react-dom",
+    "asp",
+    "jscript",
+    "universal-app"
+  ],
+  "author": "Martin Feineis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mfeineis/react-asp-jscript/issues"
+  },
+  "homepage": "https://github.com/mfeineis/react-asp-jscript#readme"
+}

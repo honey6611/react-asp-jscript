@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"watch": true,
+		"experimentalDecorators": true,
+		"noEmitOnError": false,
+		"preserveConstEnums": false,
+		"jsx": "react",
+		"target": "ES3"
+	}
+}
