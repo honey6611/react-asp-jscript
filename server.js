@@ -35,6 +35,8 @@ var Page = (function () {
 		if (port !== 80 && port !== 443) {
 			rootUrl += ':' + port;
 		}
+        
+        //Response.write(rootUrl + baseDir + '/');
 		
 		return rootUrl + baseDir + '/';
 	}
@@ -63,11 +65,17 @@ var Page = (function () {
 			dataText = responseText;
 		});
 		
-		var pkg = {};
-		fetch(rootUrl + 'package.json', { sync: true })
-			.then(function (responseText) {
-				pkg = JSON.parse(responseText);
-			});
+		var pkg = { version: 'unspecified' };
+
+        try {
+		    fetch('file://' + Server.mapPath('package.json'), { sync: true })
+			    .then(function (responseText) {
+				    pkg = JSON.parse(responseText);
+                });
+        }
+        catch (e) {
+            console.error('' + e);
+        }
 				
 		return {
 			api: apiUrl,
